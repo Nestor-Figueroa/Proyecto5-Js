@@ -78,9 +78,8 @@ const moveSnake = () => {
 }
 
 const addFood = () => {
-    score++; //Aumenta el marcador
-    //gameSpeed -= 1; //Aumenta la velocidad
-    //speed();
+    score++; //Aumenta el marcador 
+    speed(gameSpeed -= 10); //Actualizacion de la velocidad del juego
     updateScore(); //Actualiza el marcador
     createRandomFood(); //Crea un nuevo squere de comida
 }
@@ -161,10 +160,13 @@ const startGame = () => {
     updateScore();
     createRandomFood();
     document.addEventListener('keydown', directionEvent); //Escuchar los eventos de las flechas y se le pasa la tecla oprimida
-    //speed();
-    moveInterval = setInterval( () => moveSnake(), gameSpeed);
+    speed(gameSpeed);
+    //moveInterval = setInterval( () => moveSnake(), gameSpeed);
 }
-/*
-const speed = () =>{
-    moveInterval = setInterval( () => moveSnake(), gameSpeed); //funcion setInterval llama la funcion moveSnake cada 100ms
-}*/
+
+//Esta funcion realiza la actualizacion de la velocidad del juego
+const speed = (vel) =>{
+    clearInterval(moveInterval);
+    moveInterval = setInterval( () => moveSnake(), vel); //funcion setInterval llama la funcion moveSnake 
+    //alert(`La velocidad actual es: ${gameSpeed}`);
+}
